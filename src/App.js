@@ -1,24 +1,29 @@
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 
+import { AppBar, Toolbar, Tab } from '@material-ui/core';
+import Home from './components/paginas/Home';
+import ConfiguracaoCalculo from './components/paginas/ConfiguracaoCalculo';
+import Dividas from './components/paginas/Dividas';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <AppBar position="static">
+        <Toolbar>
+          <Tab label="Configuração Cálculo" component={Link} to="/configuracaocalculo" className=""></Tab>
+          <Tab label="Dívida" component={Link} to="/dividas" className=""></Tab>
+        </Toolbar>
+      </AppBar>
+
+      <Switch>
+        <Route path="/" exact component={ConfiguracaoCalculo} />
+        <Route path="/configuracaocalculo/" component={ConfiguracaoCalculo} />
+        <Route path="/dividas/" component={Dividas} />
+      </Switch>
+    </Router>
   );
 }
 
